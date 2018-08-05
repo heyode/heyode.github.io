@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="iOS,Swift," />
 
 
 
@@ -80,6 +80,7 @@
 
 
 <meta name="description" content="本文转自https://www.cnswift.org/automatic-reference-counting  循环引用问题因为Swift中采用ARC(自动引用计数)来管理对象实体内存，ARC的工作机制就是你每次创建一个对象实体时，ARC会在内存中创建相应的空间才存储这个对象实体，当你不再使用这个实体时，它会自动释放之前占用的内存空间以供其他实体使用。正常情况下ARC都可以自动管理内存的分配">
+<meta name="keywords" content="iOS,Swift">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Swift中循环引用问题">
 <meta property="og:url" content="http://heyode.github.io/2018/08/05/Swift中循环引用问题/index.html">
@@ -92,7 +93,7 @@
 <meta property="og:image" content="http://heyode.github.io/2018/08/05/Swift中循环引用问题/weakReference02_2x.png">
 <meta property="og:image" content="http://heyode.github.io/2018/08/05/Swift中循环引用问题/closureReferenceCycle01_2x.png">
 <meta property="og:image" content="http://heyode.github.io/2018/08/05/Swift中循环引用问题/closureReferenceCycle02_2x.png">
-<meta property="og:updated_time" content="2018-08-05T12:01:54.807Z">
+<meta property="og:updated_time" content="2018-08-05T12:21:58.232Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Swift中循环引用问题">
 <meta name="twitter:description" content="本文转自https://www.cnswift.org/automatic-reference-counting  循环引用问题因为Swift中采用ARC(自动引用计数)来管理对象实体内存，ARC的工作机制就是你每次创建一个对象实体时，ARC会在内存中创建相应的空间才存储这个对象实体，当你不再使用这个实体时，它会自动释放之前占用的内存空间以供其他实体使用。正常情况下ARC都可以自动管理内存的分配">
@@ -190,8 +191,6 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
-            
             首页
           </a>
         </li>
@@ -199,8 +198,6 @@
         
         <li class="menu-item menu-item-archives">
           <a href="/archives/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
             归档
           </a>
@@ -329,14 +326,14 @@
 <p>现在 Customer 实例对 CreditCard 实例有一个强引用，并且 CreditCard 实例对 Customer 实例有一个无主引用。<br>由于 Customer 的无主引用，当你断开 john 变量持有的强引用时，那么就再也没有指向Customer 实例的强引用了。<br>因为不再有 Customer 的强引用，该实例被释放了。其后，再也没有指向 CreditCard 实例的强引用，该实例也随之被释放了：<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">john = <span class="literal">nil</span></span><br><span class="line"><span class="comment">// prints "John Appleseed is being deinitialized"</span></span><br><span class="line"><span class="comment">// prints "Card #1234567890123456 is being deinitialized"</span></span><br></pre></td></tr></table></figure></p>
 <h3 id="闭包的循环引用"><a href="#闭包的循环引用" class="headerlink" title="闭包的循环引用"></a>闭包的循环引用</h3><p>下面的例子为你展示了当一个闭包引用了 self 后是如何产生一个循环强引用的。例子中定义了一个叫 HTMLElement 的类，用一种简单的模型表示 HTML 中的一个单独的元素：</p>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">HTMLElement</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">let</span> name: <span class="type">String</span></span><br><span class="line">    <span class="keyword">let</span> text: <span class="type">String</span>?</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">lazy</span> <span class="keyword">var</span> asHTML: () -&gt; <span class="type">String</span> = &#123;</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">let</span> text = <span class="keyword">self</span>.text &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">"&lt;<span class="subst">\(<span class="keyword">self</span>.name)</span>&gt;<span class="subst">\(text)</span>&lt;/<span class="subst">\(<span class="keyword">self</span>.name)</span>&gt;"</span></span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">"&lt;<span class="subst">\(<span class="keyword">self</span>.name)</span> /&gt;"</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">init</span>(name: <span class="type">String</span>, text: <span class="type">String</span>? = <span class="literal">nil</span>) &#123;</span><br><span class="line">        <span class="keyword">self</span>.name = name</span><br><span class="line">        <span class="keyword">self</span>.text = text</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">deinit</span> &#123;</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"<span class="subst">\(name)</span> is being deinitialized"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>HTMLElement 类定义了一个 name 属性来表示这个元素的名称，例如表示标题元素的 “h1” 、代表段落元素的 “p” 、或者代表换行元素的 “br” 。 HTMLElement 还定义了一个可选的属性text ，它可以用来设置和展现 HTML  元素的文本。<br>除了上面的两个属性， HTMLElement 还定义了一个 lazy 属性 asHTML 。这个属性引用了一个将name 和 text 组合成 HTML  字符串片段的闭包。该属性是 Void -&gt; String 类型，或者可以理解为“一个没有参数，但返回 String 的函数”。<br>默认情况下，闭包赋值给了 asHTML 属性，这个闭包返回一个代表 HTML 标签的字符串。如果text 值存在，该标签就包含可选值 text ；如果 text 不存在，该标签就不包含文本。对于段落元素，根据 text 是 “some text” 还是 nil ，闭包会返回 “</p><p>some text</p>“ 或者 “<p>“ 。<br>可以像实例方法那样去命名、使用 asHTML 属性。总之，由于 asHTML 是闭包而不是实例方法，如果你想改变特定元素的 HTML 处理的话，可以用自定义的闭包来取代默认值。</p>
+<p>HTMLElement 类定义了一个 name 属性来表示这个元素的名称，例如表示标题元素的 “h1” 、代表段落元素的 “p” 、或者代表换行元素的 “br” 。 HTMLElement 还定义了一个可选的属性text ，它可以用来设置和展现 HTML  元素的文本。<br>除了上面的两个属性， HTMLElement 还定义了一个 lazy 属性 asHTML 。这个属性引用了一个将name 和 text 组合成 HTML  字符串片段的闭包。该属性是 Void -&gt; String 类型，或者可以理解为“一个没有参数，但返回 String 的函数”。<br>默认情况下，闭包赋值给了 asHTML 属性，这个闭包返回一个代表 HTML 标签的字符串。如果text 值存在，该标签就包含可选值 text ；如果 text 不存在，该标签就不包含文本。对于段落元素，根据 text 是 “some text” 还是 nil ，闭包会返回<code>&quot;&lt;p&gt;some text&lt;/p&gt;&quot;</code>或者 <code>&quot;&lt;p /&gt;&quot;</code> 。<br>可以像实例方法那样去命名、使用 asHTML 属性。总之，由于 asHTML 是闭包而不是实例方法，如果你想改变特定元素的 HTML 处理的话，可以用自定义的闭包来取代默认值。</p>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> heading = <span class="type">HTMLElement</span>(name: <span class="string">"h1"</span>)</span><br><span class="line"><span class="keyword">let</span> defaultText = <span class="string">"some default text"</span></span><br><span class="line">heading.asHTML = &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"&lt;<span class="subst">\(heading.name)</span>&gt;<span class="subst">\(heading.text ?? defaultText)</span>&lt;/<span class="subst">\(heading.name)</span>&gt;"</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">print</span>(heading.asHTML())</span><br><span class="line"><span class="comment">// prints "&lt;h1&gt;some default text&lt;/h1&gt;"</span></span><br></pre></td></tr></table></figure>
 <p>HTMLElement 类只提供一个初始化器，通过 name 和 text （如果有的话）参数来初始化一个元素。该类也定义了一个初始化器，当 HTMLElement 实例被释放时打印一条消息。<br>下面的代码展示了如何用 HTMLElement 类创建实例并打印消息。</p>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> paragraph: <span class="type">HTMLElement</span>? = <span class="type">HTMLElement</span>(name: <span class="string">"p"</span>, text: <span class="string">"hello, world"</span>)</span><br><span class="line"><span class="built_in">print</span>(paragraph!.asHTML())</span><br><span class="line"><span class="comment">// prints"hello, world"</span></span><br></pre></td></tr></table></figure>
 <p>不幸的是，上面写的 HTMLElement 类产生了类实例和 asHTML 默认值的闭包之间的循环强引用。循环强引用如下图所示：<br><img src="/2018/08/05/Swift中循环引用问题/closureReferenceCycle01_2x.png" alt=""><br>实例的 asHTML 属性持有闭包的强引用。但是，闭包在其闭包体内使用了 self （引用了self.name 和 self.text ），因此闭包捕获了 self ，这意味着闭包又反过来持有了HTMLElement 实例的强引用。这样两个对象就产生了循环强引用。（更多关于闭包捕获值的信息，请参考值捕获）。<br>如果设置 paragraph 变量为 nil ，打破它持有的 HTMLElement 实例的强引用，HTMLElement 实例和它的闭包都不会被释放，也是因为循环强引用：</p>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">paragraph = <span class="literal">nil</span></span><br></pre></td></tr></table></figure>
 <p>注意 HTMLElement 的反初始化器中的消息并没有被打印，证明了 HTMLElement 实例并没有被销毁。</p>
-<p>####解决闭包的循环强引用<br>你可以通过定义捕获列表作为闭包的定义来解决在闭包和类实例之间的循环强引用。捕获列表定义了当在闭包体里捕获一个或多个引用类型的规则。正如在两个类实例之间的循环强引用，声明每个捕获的引用为引用或无主引用而不是强引用。应当根据代码关系来决定使用弱引用还是无主引用。<br>在闭包和捕获的实例总是互相引用并且总是同时释放时，将闭包内的捕获定义为无主引用。<br>相反，在被捕获的引用可能会变为 nil 时，定义一个弱引用的捕获。弱引用总是可选项，当实例的引用释放时会自动变为 nil 。这使我们可以在闭包体内检查它们是否存在。<br>前面的 HTMLElement 例子中，无主引用是正确的解决循环强引用的方法。这样编写HTMLElement 类来避免循环强引用：</p>
+<p>###解决闭包的循环强引用<br>你可以通过定义捕获列表作为闭包的定义来解决在闭包和类实例之间的循环强引用。捕获列表定义了当在闭包体里捕获一个或多个引用类型的规则。正如在两个类实例之间的循环强引用，声明每个捕获的引用为引用或无主引用而不是强引用。应当根据代码关系来决定使用弱引用还是无主引用。<br>在闭包和捕获的实例总是互相引用并且总是同时释放时，将闭包内的捕获定义为无主引用。<br>相反，在被捕获的引用可能会变为 nil 时，定义一个弱引用的捕获。弱引用总是可选项，当实例的引用释放时会自动变为 nil 。这使我们可以在闭包体内检查它们是否存在。<br>前面的 HTMLElement 例子中，无主引用是正确的解决循环强引用的方法。这样编写HTMLElement 类来避免循环强引用：</p>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">HTMLElement</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">let</span> name: <span class="type">String</span></span><br><span class="line">    <span class="keyword">let</span> text: <span class="type">String</span>?</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">lazy</span> <span class="keyword">var</span> asHTML: () -&gt; <span class="type">String</span> = &#123;</span><br><span class="line">        [<span class="keyword">unowned</span> <span class="keyword">self</span>] <span class="keyword">in</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">let</span> text = <span class="keyword">self</span>.text &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">"&lt;<span class="subst">\(<span class="keyword">self</span>.name)</span>&gt;<span class="subst">\(text)</span>&lt;/<span class="subst">\(<span class="keyword">self</span>.name)</span>&gt;"</span></span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">"&lt;<span class="subst">\(<span class="keyword">self</span>.name)</span> /&gt;"</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">init</span>(name: <span class="type">String</span>, text: <span class="type">String</span>? = <span class="literal">nil</span>) &#123;</span><br><span class="line">        <span class="keyword">self</span>.name = name</span><br><span class="line">        <span class="keyword">self</span>.text = text</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">deinit</span> &#123;</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"<span class="subst">\(name)</span> is being deinitialized"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>上面的 HTMLElement 实现和之前的实现一致，除了在 asHTML 闭包中多了一个捕获列表。这里，捕获列表是 [unowned self] ，表示“用无主引用而不是强引用来捕获 self ”。<br>和之前一样，我们可以创建并打印 HTMLElement 实例：</p>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> paragraph: <span class="type">HTMLElement</span>? = <span class="type">HTMLElement</span>(name: <span class="string">"p"</span>, text: <span class="string">"hello, world"</span>)</span><br><span class="line"><span class="built_in">print</span>(paragraph!.asHTML())</span><br><span class="line"><span class="comment">// prints "&lt;p&gt;hello, world&lt;/p&gt;"</span></span><br></pre></td></tr></table></figure>
@@ -356,6 +353,14 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/iOS/" rel="tag"># iOS</a>
+          
+            <a href="/tags/Swift/" rel="tag"># Swift</a>
+          
+        </div>
       
 
       
@@ -443,6 +448,15 @@
 
             
 
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
             
 
           </nav>
