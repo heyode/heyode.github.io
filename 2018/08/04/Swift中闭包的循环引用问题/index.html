@@ -79,13 +79,24 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="heyode的博客">
-<meta property="og:url" content="http://heyode.github.io/index.html">
+<meta name="description" content="本文转自https://www.cnswift.org/automatic-reference-counting  循环引用问题因为Swift中采用ARC(自动引用计数)来管理对象实体内存，ARC的工作机制就是你每次创建一个对象实体时，ARC会在内存中创建相应的空间才存储这个对象实体，当你不再使用这个实体时，它会自动释放之前占用的内存空间以供其他实体使用。正常情况下ARC都可以自动管理内存的分配">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Swift中循环引用问题">
+<meta property="og:url" content="http://heyode.github.io/2018/08/04/Swift中闭包的循环引用问题/index.html">
 <meta property="og:site_name" content="heyode的博客">
+<meta property="og:description" content="本文转自https://www.cnswift.org/automatic-reference-counting  循环引用问题因为Swift中采用ARC(自动引用计数)来管理对象实体内存，ARC的工作机制就是你每次创建一个对象实体时，ARC会在内存中创建相应的空间才存储这个对象实体，当你不再使用这个实体时，它会自动释放之前占用的内存空间以供其他实体使用。正常情况下ARC都可以自动管理内存的分配">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://heyode.github.io/Users/heyode/Documents/blog/source/_posts/referenceCycle02_2x.png">
+<meta property="og:image" content="http://heyode.github.io/Users/heyode/Documents/blog/source/_posts/referenceCycle03_2x.png">
+<meta property="og:image" content="http://heyode.github.io/Users/heyode/Documents/blog/source/_posts/weakReference01_2x.png">
+<meta property="og:image" content="http://heyode.github.io/Users/heyode/Documents/blog/source/_posts/weakReference02_2x.png">
+<meta property="og:image" content="http://heyode.github.io/Users/heyode/Documents/blog/source/_posts/closureReferenceCycle01_2x.png">
+<meta property="og:image" content="http://heyode.github.io/Users/heyode/Documents/blog/source/_posts/closureReferenceCycle02_2x.png">
+<meta property="og:updated_time" content="2018-08-05T10:01:09.014Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="heyode的博客">
+<meta name="twitter:title" content="Swift中循环引用问题">
+<meta name="twitter:description" content="本文转自https://www.cnswift.org/automatic-reference-counting  循环引用问题因为Swift中采用ARC(自动引用计数)来管理对象实体内存，ARC的工作机制就是你每次创建一个对象实体时，ARC会在内存中创建相应的空间才存储这个对象实体，当你不再使用这个实体时，它会自动释放之前占用的内存空间以供其他实体使用。正常情况下ARC都可以自动管理内存的分配">
+<meta name="twitter:image" content="http://heyode.github.io/Users/heyode/Documents/blog/source/_posts/referenceCycle02_2x.png">
 
 
 
@@ -115,13 +126,13 @@
 
 
 
-  <link rel="canonical" href="http://heyode.github.io/"/>
+  <link rel="canonical" href="http://heyode.github.io/2018/08/04/Swift中闭包的循环引用问题/"/>
 
 
 
 
 
-  <title>heyode的博客</title>
+  <title>Swift中循环引用问题 | heyode的博客</title>
   
 
 
@@ -140,8 +151,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -214,9 +224,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -229,7 +239,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://heyode.github.io/2018/08/05/Swift中循环引用问题/">
+    <link itemprop="mainEntityOfPage" href="http://heyode.github.io/2018/08/04/Swift中闭包的循环引用问题/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="heyode">
@@ -246,9 +256,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/08/05/Swift中循环引用问题/" itemprop="url">Swift中循环引用问题</a></h1>
+          <h1 class="post-title" itemprop="name headline">Swift中循环引用问题</h1>
         
 
         <div class="post-meta">
@@ -260,8 +268,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-05T18:03:35+08:00">
-                2018-08-05
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-04T20:45:55+08:00">
+                2018-08-04
               </time>
             
 
@@ -298,9 +306,7 @@
       
 
       
-        
-          
-            <blockquote>
+        <blockquote>
 <p>本文转自<a href="">https://www.cnswift.org/automatic-reference-counting</a></p>
 </blockquote>
 <h3 id="循环引用问题"><a href="#循环引用问题" class="headerlink" title="循环引用问题"></a>循环引用问题</h3><p>因为Swift中采用ARC(自动引用计数)来管理对象实体内存，ARC的工作机制就是你每次创建一个对象实体时，ARC会在内存中创建相应的空间才存储这个对象实体，当你不再使用这个实体时，它会自动释放之前占用的内存空间以供其他实体使用。<br>正常情况下ARC都可以自动管理内存的分配和释放，但在特殊的情况下，需要手动处理才能使对象的实体正确释放。<br>下面参照Swift官方引用的例子来说明，对象之间的循环强引用问题。<br>这个例子定义两个类分别是Person和Apartment,用来建立公寓和其中的公民</p>
@@ -325,7 +331,7 @@ unit4A = Apartment(unit: &quot;4A&quot;)
 </code></pre><p>然后将两个实例关联在一起：</p>
 <pre><code>john!.apartment = unit4A
 unit4A!.tenant = john
-</code></pre><p>如下图：<br><img src="/2018/08/05/Swift中循环引用问题/referenceCycle02_2x.png" alt="referenceCycle02"></p>
+</code></pre><p>如下图：<br><img src="/Users/heyode/Documents/blog/source/_posts/referenceCycle02_2x.png" alt="referenceCycle02"></p>
 <p>此时这两个实体之间就形成了循环强引用，Person实例有个指向Apartment的强引用，Apartment有个指向Person实例的强引用。因此，即使你断开john和unit4A变量所持有的强引用，Person和Apartment的实例的引用计数也不会变为0,导致这两个实例无法被释放。</p>
 <pre><code>john = nil
 unit4A = nil
@@ -362,8 +368,6 @@ unit4A = nil
 <p>使用捕获列表后引用关系如下图所示：<br><img src="/Users/heyode/Documents/blog/source/_posts/closureReferenceCycle02_2x.png" alt=""><br>这次，闭包以无主引用的形式捕获 self ，并不会持有 HTMLElement 实例的强引用。如果将paragraph 赋值为 nil ， HTMLElement 实例将会被释放，并能看到它的反初始化器打印出的消息。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">paragraph = nil</span><br><span class="line">// prints &quot;p is being deinitialized&quot;</span><br></pre></td></tr></table></figure>
 
-          
-        
       
     </div>
     
@@ -380,12 +384,12 @@ unit4A = nil
       
 
       
+      
+      
 
       
 
       
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -395,10 +399,11 @@ unit4A = nil
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -406,6 +411,10 @@ unit4A = nil
 
 
           
+
+  
+
+
 
         </div>
         
@@ -426,8 +435,17 @@ unit4A = nil
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -469,6 +487,22 @@ unit4A = nil
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#循环引用问题"><span class="nav-number">1.</span> <span class="nav-text">循环引用问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解决对象循环引用问题"><span class="nav-number">2.</span> <span class="nav-text">解决对象循环引用问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#闭包的循环引用"><span class="nav-number">3.</span> <span class="nav-text">闭包的循环引用</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -609,6 +643,10 @@ unit4A = nil
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
