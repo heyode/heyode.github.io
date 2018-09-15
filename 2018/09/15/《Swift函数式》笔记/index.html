@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="iOS,Swift," />
 
 
 
@@ -79,13 +79,18 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="heyode的博客">
-<meta property="og:url" content="http://heyode.github.io/index.html">
+<meta name="description" content="读《函数式Swift》笔记：Swift可选值可选链可选绑定定义一个函数，接受两个可选整数相加，返回一个可选整数。但是加法运算符只支持非可选的值。所以我们可以对Int?进行可选绑定。12345678func add(_ optionalX: Int?, _ optionalY: Int?) -&amp;gt; Int? &amp;#123;    if let x = optionalX &amp;#123;Â">
+<meta name="keywords" content="iOS,Swift">
+<meta property="og:type" content="article">
+<meta property="og:title" content="读《函数式Swift》笔记">
+<meta property="og:url" content="http://heyode.github.io/2018/09/15/《Swift函数式》笔记/index.html">
 <meta property="og:site_name" content="heyode的博客">
+<meta property="og:description" content="读《函数式Swift》笔记：Swift可选值可选链可选绑定定义一个函数，接受两个可选整数相加，返回一个可选整数。但是加法运算符只支持非可选的值。所以我们可以对Int?进行可选绑定。12345678func add(_ optionalX: Int?, _ optionalY: Int?) -&amp;gt; Int? &amp;#123;    if let x = optionalX &amp;#123;Â">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-09-15T09:52:23.392Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="heyode的博客">
+<meta name="twitter:title" content="读《函数式Swift》笔记">
+<meta name="twitter:description" content="读《函数式Swift》笔记：Swift可选值可选链可选绑定定义一个函数，接受两个可选整数相加，返回一个可选整数。但是加法运算符只支持非可选的值。所以我们可以对Int?进行可选绑定。12345678func add(_ optionalX: Int?, _ optionalY: Int?) -&amp;gt; Int? &amp;#123;    if let x = optionalX &amp;#123;Â">
 
 
 
@@ -115,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://heyode.github.io/"/>
+  <link rel="canonical" href="http://heyode.github.io/2018/09/15/《Swift函数式》笔记/"/>
 
 
 
 
 
-  <title>heyode的博客</title>
+  <title>读《函数式Swift》笔记 | heyode的博客</title>
   
 
 
@@ -140,8 +145,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -226,165 +230,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://heyode.github.io/2018/09/15/Swift4字符串相关处理/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="heyode">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="heyode的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/09/15/Swift4字符串相关处理/" itemprop="url">Swift4.0字符串相关处理</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-15T17:49:45+08:00">
-                2018-09-15
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/iOS/" itemprop="url" rel="index">
-                    <span itemprop="name">iOS</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="Swift4-0字符串相关处理"><a href="#Swift4-0字符串相关处理" class="headerlink" title="Swift4.0字符串相关处理"></a>Swift4.0字符串相关处理</h1><h3 id="字符串截取"><a href="#字符串截取" class="headerlink" title="字符串截取"></a>字符串截取</h3><ul>
-<li><p>截取某字符串的前10个字符串:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">let sub1 = str.prefix(10)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>截取某字符串的后10个字符串:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">let str1 = str.suffix(10)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>截取某字符串的后10个字符串,也可以换种写法:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">let index2 = str.index(str.endIndex, offsetBy: -10)</span><br><span class="line">let sub4 = str[index2..&lt;str.endIndex]</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/09/15/Swift4字符串相关处理/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
 
   
 
@@ -414,9 +262,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/09/15/《Swift函数式》笔记/" itemprop="url">读《函数式Swift》笔记</a></h1>
+          <h1 class="post-title" itemprop="name headline">读《函数式Swift》笔记</h1>
         
 
         <div class="post-meta">
@@ -488,16 +334,13 @@
       
 
       
-        
-          <h1 id="读《函数式Swift》笔记：Swift可选值"><a href="#读《函数式Swift》笔记：Swift可选值" class="headerlink" title="读《函数式Swift》笔记：Swift可选值"></a>读《函数式Swift》笔记：Swift可选值</h1><h3 id="可选链"><a href="#可选链" class="headerlink" title="可选链"></a>可选链</h3><h3 id="可选绑定"><a href="#可选绑定" class="headerlink" title="可选绑定"></a>可选绑定</h3><p>定义一个函数，接受两个可选整数相加，返回一个可选整数。但是加法运算符只支持非可选的值。<br>所以我们可以对Int?进行可选绑定。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">func add(_ optionalX: Int?, _ optionalY: Int?) -&gt; Int? &#123;</span><br><span class="line">    if let x = optionalX &#123;Â</span><br><span class="line">      if let y = optionalY &#123;</span><br><span class="line">        return x + y</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return nil</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/09/15/《Swift函数式》笔记/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
+        <h1 id="读《函数式Swift》笔记：Swift可选值"><a href="#读《函数式Swift》笔记：Swift可选值" class="headerlink" title="读《函数式Swift》笔记：Swift可选值"></a>读《函数式Swift》笔记：Swift可选值</h1><h3 id="可选链"><a href="#可选链" class="headerlink" title="可选链"></a>可选链</h3><h3 id="可选绑定"><a href="#可选绑定" class="headerlink" title="可选绑定"></a>可选绑定</h3><p>定义一个函数，接受两个可选整数相加，返回一个可选整数。但是加法运算符只支持非可选的值。<br>所以我们可以对Int?进行可选绑定。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">func add(_ optionalX: Int?, _ optionalY: Int?) -&gt; Int? &#123;</span><br><span class="line">    if let x = optionalX &#123;Â</span><br><span class="line">      if let y = optionalY &#123;</span><br><span class="line">        return x + y</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return nil</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<a id="more"></a>
+<p>我们可以换一种简单的方式：同时绑定多个可选值<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">func add2(_ optionalX: Int?, _ optionalY: Int?) -&gt; Int? &#123;</span><br><span class="line">  if let x = optionalX, let y = optionalY &#123;</span><br><span class="line">    return x + y</span><br><span class="line">  &#125;</span><br><span class="line">  return nil</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>还可以用更简单的方式，可以使用一个 guard 语句，当值缺失时提前退出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">func add3(_ optionalX: Int?, _ optionalY: Int?) -&gt; Int? &#123;</span><br><span class="line">    guard let x = optionalX, let y = optionalY else &#123; return nil &#125;</span><br><span class="line">    return x + y</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>下面来个实际的例子，要分别从两个字典中取值，编写一个能返回指定国家首都人口的函数。<br>我们定义了下面这两个字典，国家与其首都相关联，城市和其对应的人口相关联：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">let capitals = [</span><br><span class="line">&quot;France&quot;: &quot;Paris&quot;,</span><br><span class="line">&quot;Spain&quot;: &quot;Madrid&quot;,</span><br><span class="line">&quot;The Netherlands&quot;: &quot;Amsterdam&quot;,</span><br><span class="line">&quot;Belgium&quot;: &quot;Brussels&quot;</span><br><span class="line">]</span><br><span class="line">let cities = [&quot;Paris&quot;: 2241, &quot;Madrid&quot;: 3165, &quot;Amsterdam&quot;: 827, &quot;Berlin&quot;: 3562]</span><br><span class="line">func populationOfCapital(country: String) -&gt; Int? &#123;</span><br><span class="line">  guard let capital = capitals[country], let population = cities[capital]</span><br><span class="line">  else &#123; return nil &#125;</span><br><span class="line">  return population * 1000</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="分支上的可选值"><a href="#分支上的可选值" class="headerlink" title="分支上的可选值"></a>分支上的可选值</h3><p>为了在switch语句中匹配可选值，可以为case分支中的每个模式添加一个？后缀：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">switch madridPopulation &#123;</span><br><span class="line">    case 0?: print(&quot;Nobody in Madrid&quot;)</span><br><span class="line">    case (1..&lt;1000)?: print(&quot;Less than a million in Madrid&quot;)</span><br><span class="line">    case let x?: print(&quot;\(x) people in Madrid&quot;)</span><br><span class="line">    case nil: print(&quot;We don&apos;t know about Madrid&quot;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
       
     </div>
     
@@ -512,163 +355,42 @@
 
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://heyode.github.io/2018/08/05/Swift中循环引用问题/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="heyode">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="heyode的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/08/05/Swift中循环引用问题/" itemprop="url">Swift中循环引用问题</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-05T18:03:35+08:00">
-                2018-08-05
-              </time>
-            
-
-            
-
-            
-          </span>
-
+        <div class="post-tags">
           
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/iOS/" itemprop="url" rel="index">
-                    <span itemprop="name">iOS</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
+            <a href="/tags/iOS/" rel="tag"># iOS</a>
           
-
+            <a href="/tags/Swift/" rel="tag"># Swift</a>
           
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
         </div>
-      </header>
-    
+      
 
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
+      
       
       
 
       
-        
-          <blockquote>
-<p>本文转自<a href="">https://www.cnswift.org/automatic-reference-counting</a></p>
-</blockquote>
-<h3 id="循环引用问题"><a href="#循环引用问题" class="headerlink" title="循环引用问题"></a>循环引用问题</h3><p>因为Swift中采用ARC(自动引用计数)来管理对象实体内存，ARC的工作机制就是你每次创建一个对象实体时，ARC会在内存中创建相应的空间才存储这个对象实体，当你不再使用这个实体时，它会自动释放之前占用的内存空间以供其他实体使用。<br>正常情况下ARC都可以自动管理内存的分配和释放，但在特殊的情况下，需要手动处理才能使对象的实体正确释放。<br></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/08/05/Swift中循环引用问题/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/08/05/Swift中循环引用问题/" rel="next" title="Swift中循环引用问题">
+                <i class="fa fa-chevron-left"></i> Swift中循环引用问题
+              </a>
+            
           </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
 
-    
+          <span class="post-nav-divider"></span>
 
-    
-
-    
-
-    <footer class="post-footer">
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/09/15/Swift4字符串相关处理/" rel="prev" title="Swift4.0字符串相关处理">
+                Swift4.0字符串相关处理 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
       
 
       
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -678,10 +400,11 @@
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -689,6 +412,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -709,8 +436,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -770,6 +506,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#读《函数式Swift》笔记：Swift可选值"><span class="nav-number">1.</span> <span class="nav-text">读《函数式Swift》笔记：Swift可选值</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#可选链"><span class="nav-number">1.0.1.</span> <span class="nav-text">可选链</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#可选绑定"><span class="nav-number">1.0.2.</span> <span class="nav-text">可选绑定</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分支上的可选值"><span class="nav-number">1.0.3.</span> <span class="nav-text">分支上的可选值</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -910,6 +662,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
